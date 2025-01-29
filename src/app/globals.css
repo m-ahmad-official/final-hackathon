@@ -761,8 +761,6 @@
   }
 }
 
-/* HTML: <div class="loader"></div> */
-/* HTML: <div class="loader"></div> */
 .loader {
   width: fit-content;
   font-weight: 500;
@@ -781,7 +779,7 @@
   }
 }
 
-/* @layer base {
+@layer base {
   :root {
     --background: 0 0% 100%;
     --foreground: 0 0% 3.9%;
@@ -837,7 +835,7 @@
   }
 }
 
-@layer base {
+/* @layer base {
   * {
     @apply border-border;
   }
