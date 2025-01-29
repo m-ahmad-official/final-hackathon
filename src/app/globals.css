@@ -2,16 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-/* .imageGirl {
+.imageGirl {
   width: auto;
   height: 716px;
   background-image: url("/images/girlImage.jpg");
   background-position: center;
   background-size: cover;
-} */
-
-.imageGirl {
-  @apply w-auto h-[716px] bg-cover bg-center bg-[url('/images/girlImage.jpg')];
 }
 
 .men {
@@ -46,60 +42,68 @@
   background-position: center;
 }
 
-:root {
-  --card-width: 239px;
-  --card-height: 427px;
-}
-
-.product {
-  width: var(--card-width);
-  height: var(--card-height);
+.product1 {
+  width: 239px;
+  height: 427px;
+  background-image: url("/images/product1.jpg");
   background-size: cover;
   background-position: center;
 }
 
-.product-card {
-  @apply w-[239px] h-[427px] bg-cover bg-center;
-}
-
-.product1 {
-  @extend .product-card;
-  background-image: url("/images/product1.jpg");
-}
-
 .product2 {
-  @extend .product-card;
+  width: 239px;
+  height: 427px;
   background-image: url("/images/product2.jpg");
+  background-size: cover;
+  background-position: center;
 }
 
 .product3 {
-  @extend .product-card;
+  width: 239px;
+  height: 427px;
   background-image: url("/images/product3.jpg");
+  background-size: cover;
+  background-position: center;
 }
 
 .product4 {
-  @extend .product-card;
+  width: 239px;
+  height: 427px;
   background-image: url("/images/product4.jpg");
+  background-size: cover;
+  background-position: center;
 }
 
 .product5 {
-  @extend .product-card;
+  width: 239px;
+  height: 427px;
   background-image: url("/images/product5.jpg");
+  background-size: cover;
+  background-position: center;
 }
 
 .product6 {
-  @extend .product-card;
+  width: 239px;
+  height: 427px;
   background-image: url("/images/product6.jpg");
+  background-size: cover;
+  background-position: center;
 }
 
 .product7 {
-  @extend .product-card;
+  width: 239px;
+  height: 427px;
   background-image: url("/images/product7.jpg");
+  background-size: cover;
+  background-position: center;
 }
 
 .product8 {
-  @extend .product-card;
+  width: 239px;
+  height: 427px;
   background-image: url("/images/product8.jpg");
+  background-size: cover;
+  background-position: center;
 }
 
 .carousel2 {
@@ -435,15 +439,12 @@
 }
 
 @media (max-width: 640px) {
-  /* .imageGirl {
+  .imageGirl {
     width: 100%;
     height: 753px;
     background-image: url("/images/girlImage.jpg");
     background-position: center;
     background-size: cover;
-  } */
-  .imageGirl {
-    @apply w-full h-[753px] sm:h-[716px] bg-cover bg-center bg-[url('/images/girlImage.jpg')];
   }
 
   .men {
