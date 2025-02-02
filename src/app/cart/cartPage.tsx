@@ -61,7 +61,7 @@ const CartPage = () => {
               </div>
             </>
           ) : (
-            <div className="bg-[#fff] sm:w-fit w-[360px] my-10 p-10 rounded-lg shadow-lg border-t-4 border-t-[#23A6F0] text-center">
+            <div className="bg-[#fff] sm:w-fit w-[320px] my-10 p-10 rounded-lg shadow-lg border-t-4 border-t-[#23A6F0] text-center">
               <h2 className="text-[#252B42] text-3xl font-bold">
                 Your cart is empty!
               </h2>
