@@ -3,7 +3,7 @@
 import { addToWishlist } from "@/app/store/features/wishlist";
 import { useAppDispatch } from "@/app/store/hooks";
 import React from "react";
-import { ToastContainer, toast, Bounce } from "react-toastify";
+import { toast, Bounce } from "react-toastify";
 
 interface WishlistItem {
   _id: string;

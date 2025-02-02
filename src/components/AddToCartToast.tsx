@@ -4,7 +4,7 @@ import { addToCart } from "@/app/store/features/cart";
 import { useAppDispatch } from "@/app/store/hooks";
 import Image from "next/image";
 import React from "react";
-import { ToastContainer, toast, Bounce } from "react-toastify";
+import { toast, Bounce } from "react-toastify";
 
 interface CartItem {
   _id: string;

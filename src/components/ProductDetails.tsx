@@ -4,9 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import AddToCartToast from "./AddToCartToast";
-import { useAppDispatch } from "@/app/store/hooks";
 import AddToWishlistToast from "./AddToWishlistToast";
-import { addToCart } from "@/app/store/features/cart";
 
 interface ProductDetailsProps {
   data: {
