@@ -37,7 +37,7 @@ const CartCard = () => {
       {cartArray.map((item, i) => (
         <div key={i} className="shadow-lg w-fit">
           <div className="bg-[#ffffff] sm:w-[1100px] w-[320px] flex justify-between items-center text-[#252B42] font-semibold text-base p-4 rounded-b-lg">
-            <div className="flex max-sm:flex-col max-sm:gap-3">
+            <div className="flex max-sm:flex-col max-sm:gap-2">
               <Image
                 src={item.imageUrl}
                 alt={item.title}
@@ -45,7 +45,7 @@ const CartCard = () => {
                 height={100}
                 className="h-[100px] object-cover object-top rounded-lg"
               />
-              <div className="flex flex-col max-sm:gap-2 w-full justify-evenly sm:px-4">
+              <div className="flex flex-col max-sm:gap-1 w-full justify-evenly sm:px-4">
                 <h2 className="text-[15px] font-semibold sm:block hidden">
                   {item.title}
                 </h2>
@@ -59,7 +59,7 @@ const CartCard = () => {
 
                 <button
                   onClick={() => dispatch(delItem(item.uuid as string))}
-                  className="text-sm sm:font-medium sm:bg-red-500 sm:hover:bg-white sm:text-white sm:hover:text-red-600 text-red-600 rounded sm:my-1 sm:p-1 w-fit h-fit transition-all duration-300"
+                  className="text-sm font-medium bg-red-500 sm:hover:bg-white text-white sm:hover:text-red-600 rounded my-1 p-1 w-fit h-fit transition-all duration-300"
                 >
                   Remove
                 </button>
