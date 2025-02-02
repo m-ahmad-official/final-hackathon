@@ -6,14 +6,12 @@ import React from "react";
 const CartCard = () => {
   const cartArray = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
-  // console.log("ac", cartArray.length);
 
   const handleIncrement = (uuid: string) => {
     const itemExists = cartArray.find((item) => item.uuid === uuid);
     if (itemExists) {
       dispatch({ type: "cart/incrementQty", payload: { uuid } });
     } else {
-      // Add the item if it doesn't exist
       dispatch({ type: "cart/addItem", payload: { uuid } });
     }
   };
@@ -29,7 +27,7 @@ const CartCard = () => {
 
   return (
     <>
-      <div className="bg-[#23a6f0] sm:w-[1100px] w-[360px] flex justify-between text-[#FAFAFA] font-semibold text-base py-2 px-4 rounded-t-lg">
+      <div className="bg-[#23a6f0] sm:w-[1100px] w-[320px] flex justify-between text-[#FAFAFA] font-semibold text-base py-2 px-4 rounded-t-lg">
         <h2>Product</h2>
         <div className="flex justify-between sm:w-[450px] w-[170px]">
           <h2>Quantity</h2>
@@ -38,8 +36,8 @@ const CartCard = () => {
       </div>
       {cartArray.map((item, i) => (
         <div key={i} className="shadow-lg w-fit">
-          <div className="bg-[#ffffff] sm:w-[1100px] w-[360px] flex justify-between items-center text-[#252B42] font-semibold text-base p-4 rounded-b-lg">
-            <div className="flex max-sm:flex-col max-sm:gap-3 items-center">
+          <div className="bg-[#ffffff] sm:w-[1100px] w-[320px] flex justify-between items-center text-[#252B42] font-semibold text-base p-4 rounded-b-lg">
+            <div className="flex max-sm:flex-col max-sm:gap-3">
               <Image
                 src={item.imageUrl}
                 alt={item.title}
@@ -52,7 +50,7 @@ const CartCard = () => {
                   {item.title}
                 </h2>
                 <p className="text-sm font-medium">
-                  Price: &#36;
+                  &#36;
                   {(
                     item.price -
                     (item.price * item.dicountPercentage) / 100

@@ -26,6 +26,7 @@ export default function NavbarContact({ session }: NavbarLight1Props) {
   };
 
   const cart = useAppSelector((state) => state.cart);
+  const totalItems = cart.reduce((acc, item) => acc + item.qty, 0);
 
   const handleSignOut = async () => {
     await signOutContact();
@@ -57,11 +58,9 @@ export default function NavbarContact({ session }: NavbarLight1Props) {
                       height={24}
                       className="text-[#737373]"
                     />
-                    {cart.length > 0 && (
-                      <span className="bg-[#737373] text-[#fff] text-[12px] font-bold badge badge-sm indicator-item">
-                        {cart.length}
-                      </span>
-                    )}
+                    <span className="bg-[#737373] text-[#fff] text-[12px] font-bold badge badge-sm indicator-item">
+                      {totalItems}
+                    </span>
                   </div>
                 </label>
               </Link>
@@ -124,9 +123,9 @@ export default function NavbarContact({ session }: NavbarLight1Props) {
             menuOpen ? "translate-x-0" : "-translate-x-full"
           )}
         >
-          <div className="bg-[#fafafa] flex flex-col gap-20 h-full py-12 px-8 w-[75%]">
-            <div className="text-[#737373] text-3xl" onClick={closeMenu}>
-              &#10006;
+          <div className="bg-[#fafafa] flex flex-col gap-16 h-full p-8 w-[75%]">
+            <div className="text-[#737373] text-2xl" onClick={closeMenu}>
+              &#10005;
             </div>
             <ul className="flex flex-col gap-8">
               <li>

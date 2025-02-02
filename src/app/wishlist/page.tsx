@@ -1,10 +1,12 @@
-"use client";
-
-import Footer2 from "@/components/Footer2";
+import NavbarWishlist from "@/components/NavbarWishlist";
+import { auth } from "../utils/auth";
+import { signOutWishlist } from "../actions/signOutWishlist";
+import WishlistPage from "./wishlistPage";
 import Image from "next/image";
-import React from "react";
 
-const WishListCardPage = () => {
+export default async function Wishlist() {
+  const session = await auth();
+
   return (
     <>
       <div className="bg-[#23856D] sm:block hidden">
@@ -67,28 +69,8 @@ const WishListCardPage = () => {
           </div>
         </div>
       </div>
-      {/* <NavbarLight2 /> */}
-      <h1 className="text-[#252B42] text-3xl font-bold text-center sm:my-10 max-sm:mb-10">
-        Your Wishlist
-      </h1>
-      <div className="bg-[#FAFAFA] flex justify-center">
-        <div className="py-12 flex flex-col items-center sm:items-end">
-          {/* {cartArray.length > 0 ? (
-            <div></div>
-          ) : ( */}
-          <div className="bg-[#fff] sm:w-fit w-[360px] my-10 p-10 rounded-lg shadow-lg border-t-4 border-t-[#23A6F0] text-center">
-            <h2 className="text-[#252B42] text-3xl font-bold">
-              Your wishlist is empty!
-            </h2>
-            <p className="text-lg text-[#252B42] mt-4">
-              Add items you love here!
-            </p>
-          </div>
-          {/* )} */}
-        </div>
-      </div>
-      <Footer2 />
+      <NavbarWishlist session={session} signOutWishlist={signOutWishlist} />
+      <WishlistPage />
     </>
   );
-};
-export default WishListCardPage;
+}

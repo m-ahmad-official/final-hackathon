@@ -4,6 +4,9 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import AddToCartToast from "./AddToCartToast";
+import { useAppDispatch } from "@/app/store/hooks";
+import AddToWishlistToast from "./AddToWishlistToast";
+import { addToCart } from "@/app/store/features/cart";
 
 interface ProductDetailsProps {
   data: {
@@ -25,7 +28,6 @@ interface ProductDetailsProps {
 }
 
 const ProductDetails: React.FC<ProductDetailsProps> = ({ data }) => {
-  // const dispatch = useAppDispatch();
   const [cartItem] = useState({
     _id: data._id,
     title: data.title,
@@ -34,6 +36,14 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ data }) => {
     imageUrl: data.imageUrl,
     slug: data.slug,
     qty: data.qty,
+  });
+  const [wishlistItem] = useState({
+    _id: data._id,
+    title: data.title,
+    price: data.price,
+    dicountPercentage: data.dicountPercentage,
+    imageUrl: data.imageUrl,
+    slug: data.slug,
   });
   return (
     <div className="bg-[#FAFAFA]">
@@ -142,16 +152,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ data }) => {
                   Select Options
                 </Link>
                 <div className="relative group">
-                  {/* Wishlist Button */}
-                  <div className="bg-[#FFFFFF] cursor-pointer border-[1px] border-[#E8E8E8] rounded-[50%] w-10 h-10 flex justify-center items-center shadow-md hover:scale-125 duration-300 hover:text-[#E8E8E8]">
-                    <svg
-                      className="text-[#252B42] w-5 h-auto fill-current"
-                      viewBox="0 0 530 530"
-                    >
-                      <path d="M244 84L255.1 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 0 232.4 0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84C243.1 84 244 84.01 244 84L244 84zM255.1 163.9L210.1 117.1C188.4 96.28 157.6 86.4 127.3 91.44C81.55 99.07 48 138.7 48 185.1V190.9C48 219.1 59.71 246.1 80.34 265.3L256 429.3L431.7 265.3C452.3 246.1 464 219.1 464 190.9V185.1C464 138.7 430.4 99.07 384.7 91.44C354.4 86.4 323.6 96.28 301.9 117.1L255.1 163.9z" />
-                    </svg>
-                  </div>
-                  {/* Wishlist Hover Effect */}
+                  <AddToWishlistToast wishlistItem={wishlistItem} />
                   <div className="absolute top-[110%] left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300">
                     <button className="bg-[#23A6F0] text-white px-4 py-2 rounded shadow-lg text-xs font-medium">
                       Add to Wishlist
@@ -160,20 +161,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ data }) => {
                 </div>
 
                 <div className="relative group">
-                  {/* Cart Button */}
-                  {/* <button
-                    onClick={() => dispatch(addToCart(cartItem))}
-                    className="bg-[#FFFFFF] border-[1px] border-[#E8E8E8] rounded-full w-10 h-10 flex justify-center items-center shadow-md hover:scale-125 duration-300"
-                  >
-                    <Image
-                      src="/basket.svg"
-                      alt="Basket"
-                      width={20}
-                      height={20}
-                    />
-                  </button> */}
                   <AddToCartToast cartItem={cartItem} />
-                  {/* Cart Hover Effect */}
                   <div className="absolute top-[110%] left-1/2 transform -translate-x-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300">
                     <button className="bg-[#23A6F0] text-white px-4 py-2 rounded shadow-lg text-xs font-medium">
                       Add to Cart
@@ -182,7 +170,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ data }) => {
                 </div>
 
                 <Link
-                  href={"/cart"}
+                  href={"#"}
                   className="bg-[#FFFFFF] cursor-pointer border-[1px] border-[#E8E8E8] rounded-[50%] w-10 h-10 flex justify-center items-center shadow-md hover:scale-125 duration-300 hover:text-[#E8E8E8]"
                 >
                   <Image src="/more.svg" alt="More" width={20} height={20} />

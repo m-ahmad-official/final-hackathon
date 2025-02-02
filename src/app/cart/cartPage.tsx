@@ -23,7 +23,7 @@ const CartPage = () => {
           {cartArray.length > 0 ? (
             <>
               <CartCard />
-              <div className="bg-[#fff] sm:w-fit w-[360px] my-12 p-5 rounded-lg shadow-lg border-t-4 border-t-[#23A6F0]">
+              <div className="bg-[#fff] sm:w-fit w-[320px] my-12 p-5 rounded-lg shadow-lg border-t-4 border-t-[#23A6F0]">
                 <h2 className="text-[#252B42] text-xl font-bold">
                   Order Summary
                 </h2>

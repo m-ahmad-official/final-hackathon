@@ -25,6 +25,9 @@ export default function NavbarLight2({ session }: NavbarLight1Props) {
   };
 
   const cart = useAppSelector((state) => state.cart);
+  const wishlist = useAppSelector((state) => state.wishlist);
+
+  const totalItems = cart.reduce((acc, item) => acc + item.qty, 0);
 
   const handleSignOut = async () => {
     await signOutShop();
@@ -117,11 +120,9 @@ export default function NavbarLight2({ session }: NavbarLight1Props) {
                           width={16}
                           height={16}
                         />
-                        {cart.length > 0 && (
-                          <span className="bg-[#23A6F0] text-[#fff] text-[12px] font-bold rounded-3xl badge-sm indicator-item">
-                            {cart.length}
-                          </span>
-                        )}
+                        <span className="bg-[#23A6F0] text-[#fff] text-[12px] font-bold rounded-3xl badge-sm indicator-item">
+                          {totalItems}
+                        </span>
                       </div>
                     </label>
                   </div>
@@ -130,12 +131,21 @@ export default function NavbarLight2({ session }: NavbarLight1Props) {
               <li>
                 <a href="/wishlist">
                   <div className="flex gap-[5px] p-[15px] rounded-[37px] hover:bg-[#f2f2f2] transition-all duration-300">
-                    <Image
-                      src="/heart.svg"
-                      alt="Heart"
-                      width={16}
-                      height={16}
-                    />
+                    <label tabIndex={0} role="button">
+                      <div className="indicator">
+                        <Image
+                          src="/heart.svg"
+                          alt="Heart"
+                          width={16}
+                          height={16}
+                        />
+                        {wishlist.length > 0 && (
+                          <span className="bg-[#23A6F0] text-[#fff] text-[12px] font-bold rounded-3xl badge-sm indicator-item">
+                            {wishlist.length}
+                          </span>
+                        )}
+                      </div>
+                    </label>
                   </div>
                 </a>
               </li>
@@ -150,9 +160,9 @@ export default function NavbarLight2({ session }: NavbarLight1Props) {
           menuOpen ? "translate-x-0" : "-translate-x-full"
         )}
       >
-        <div className="bg-[#fafafa] flex flex-col gap-20 h-full py-12 px-8 w-[75%]">
-          <div className="text-[#737373] text-3xl" onClick={closeMenu}>
-            &#10006;
+        <div className="bg-[#fafafa] flex flex-col gap-16 h-full p-8 w-[75%]">
+          <div className="text-[#737373] text-2xl" onClick={closeMenu}>
+            &#10005;
           </div>
           <ul className="flex flex-col gap-8">
             <li>
@@ -210,7 +220,7 @@ export default function NavbarLight2({ session }: NavbarLight1Props) {
               </a>
             </li>
           </ul>
-          <ul className="flex flex-col gap-8">
+          <ul className="flex flex-col gap-10">
             <li>
               <div className="flex items-center gap-[5px]">
                 <p className="text-2xl font-medium text-[#23A6F0]">
@@ -230,30 +240,49 @@ export default function NavbarLight2({ session }: NavbarLight1Props) {
                 </p>
               </div>
             </li>
-            <li>
+            {/* <li>
               <div>
                 <Image src="/search.svg" alt="Search" width={24} height={24} />
               </div>
-            </li>
-            <li>
-              <Link href={"/cart"}>
-                <label tabIndex={0} role="button">
-                  <div className="indicator flex">
-                    <Image src="/cart.svg" alt="Cart" width={24} height={24} />
-                    {cart.length > 0 && (
+            </li> */}
+            <div className="flex gap-8">
+              <li>
+                <Link href={"/cart"}>
+                  <label tabIndex={0} role="button">
+                    <div className="indicator flex">
+                      <Image
+                        src="/cart.svg"
+                        alt="Cart"
+                        width={24}
+                        height={24}
+                      />
                       <span className="bg-[#23A6F0] text-[#fff] text-[14px] font-bold badge badge-sm indicator-item">
-                        {cart.length}
+                        {totalItems}
                       </span>
-                    )}
-                  </div>
-                </label>
-              </Link>
-            </li>
-            <li>
-              <a href="/wishlist">
-                <Image src="/heart.svg" alt="Heart" width={24} height={24} />
-              </a>
-            </li>
+                    </div>
+                  </label>
+                </Link>
+              </li>
+              <li>
+                <a href="/wishlist">
+                  <label tabIndex={0} role="button">
+                    <div className="indicator">
+                      <Image
+                        src="/heart.svg"
+                        alt="Heart"
+                        width={24}
+                        height={24}
+                      />
+                      {wishlist.length > 0 && (
+                        <span className="bg-[#23A6F0] text-[#fff] text-[12px] font-bold rounded-3xl badge-sm indicator-item">
+                          {wishlist.length}
+                        </span>
+                      )}
+                    </div>
+                  </label>
+                </a>
+              </li>
+            </div>
           </ul>
         </div>
       </div>

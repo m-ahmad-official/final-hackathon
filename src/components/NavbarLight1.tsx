@@ -25,6 +25,9 @@ export default function NavbarLight1({ session }: NavbarLight1Props) {
   };
 
   const cart = useAppSelector((state) => state.cart);
+  const wishlist = useAppSelector((state) => state.wishlist);
+
+  const totalItems = cart.reduce((acc, item) => acc + item.qty, 0);
 
   const handleSignOut = async () => {
     await signOutHome();
@@ -53,11 +56,9 @@ export default function NavbarLight1({ session }: NavbarLight1Props) {
                   height={24}
                   className="text-[#737373]"
                 />
-                {cart.length > 0 && (
-                  <span className="bg-[#737373] text-[#fff] text-[12px] font-bold badge badge-sm indicator-item">
-                    {cart.length}
-                  </span>
-                )}
+                <span className="bg-[#737373] text-[#fff] text-[12px] font-bold badge badge-sm indicator-item">
+                  {totalItems}
+                </span>
               </div>
             </label>
           </Link>
@@ -127,11 +128,9 @@ export default function NavbarLight1({ session }: NavbarLight1Props) {
                   <label tabIndex={0} role="button">
                     <div className="indicator">
                       <Image src="cart.svg" alt="Cart" width={16} height={16} />
-                      {cart.length > 0 && (
-                        <span className="bg-[#23A6F0] text-[#fff] text-[12px] font-bold badge badge-sm indicator-item">
-                          {cart.length}
-                        </span>
-                      )}
+                      <span className="bg-[#23A6F0] text-[#fff] text-[12px] font-bold badge badge-sm indicator-item">
+                        {totalItems}
+                      </span>
                     </div>
                   </label>
                 </div>
@@ -140,7 +139,21 @@ export default function NavbarLight1({ session }: NavbarLight1Props) {
             <li>
               <a href="/wishlist">
                 <div className="flex gap-[5px] p-[15px] rounded-[37px] hover:bg-[#f2f2f2] transition-all duration-300">
-                  <Image src="heart.svg" alt="Heart" width={16} height={16} />
+                  <label tabIndex={0} role="button">
+                    <div className="indicator">
+                      <Image
+                        src="heart.svg"
+                        alt="Heart"
+                        width={16}
+                        height={16}
+                      />
+                      {wishlist.length > 0 && (
+                        <span className="bg-[#23A6F0] text-[#fff] text-[12px] font-bold rounded-3xl badge-sm indicator-item">
+                          {wishlist.length}
+                        </span>
+                      )}
+                    </div>
+                  </label>
                 </div>
               </a>
             </li>
@@ -154,9 +167,9 @@ export default function NavbarLight1({ session }: NavbarLight1Props) {
           menuOpen ? "translate-x-0" : "-translate-x-full"
         )}
       >
-        <div className="bg-[#fafafa] flex flex-col gap-20 h-full py-12 px-8 w-[75%]">
-          <div className="text-[#737373] text-3xl" onClick={closeMenu}>
-            &#10006;
+        <div className="bg-[#fafafa] flex flex-col gap-16 h-full p-8 w-[75%]">
+          <div className="text-[#737373] text-2xl" onClick={closeMenu}>
+            &#10005;
           </div>
           <ul className="flex flex-col gap-8">
             <li>

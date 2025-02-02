@@ -7,3 +7,12 @@ export type Cart = {
   qty: number;
   uuid: number | string | undefined;
 };
+
+export type Wishlist = {
+  _id: string;
+  title: string;
+  price: number;
+  imageUrl: string;
+  dicountPercentage: number;
+  uuid: number | string | undefined;
+};

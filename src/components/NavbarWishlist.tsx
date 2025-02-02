@@ -10,12 +10,12 @@ import clsx from "clsx";
 
 interface NavbarLight1Props {
   session: AuthSession | null;
-  signOutCart: () => Promise<void>;
+  signOutWishlist: () => Promise<void>;
 }
 
-export default function NavbarCart({
+export default function NavbarWishlist({
   session,
-  signOutCart,
+  signOutWishlist,
 }: NavbarLight1Props) {
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -33,7 +33,7 @@ export default function NavbarCart({
   const totalItems = cart.reduce((acc, item) => acc + item.qty, 0);
 
   const handleSignOut = async () => {
-    await signOutCart();
+    await signOutWishlist();
   };
 
   return (
