@@ -9,7 +9,7 @@ const Github = (props: SVGProps<SVGSVGElement>) => (
     viewBox="0 0 256 250"
     width="18px"
     height="18px"
-    fill="#ffffff"
+    fill="#000"
     xmlns="http://www.w3.org/2000/svg"
     preserveAspectRatio="xMidYMid"
     {...props}
@@ -53,12 +53,10 @@ export async function LoginForm() {
   }
   return (
     <>
-      <div className="flex flex-col gap-6 bg-[#1B1918] rounded-2xl p-8 border-[#333333] border">
+      <div className="flex flex-col gap-6 rounded-2xl p-8 shadow-xl border-t-4 border-[#29A8F0]">
         <div className="header text-center flex flex-col gap-2">
-          <div className="title text-xl text-white font-semibold">
-            Welcome Back
-          </div>
-          <div className="description text-[#A09E9C]">
+          <div className="title text-[22px] font-semibold">Welcome Back</div>
+          <div className="description text-gray-600">
             Login with your Google or GitHub Account
           </div>
         </div>
@@ -87,7 +85,7 @@ export async function LoginForm() {
           </div>
         </div>
       </div>
-      <div className="text-center text-xs text-[#A09E9C] text-balance">
+      <div className="text-xs text-gray-600 font-semibold italic text-center">
         By Clicking continue, you agree to our terms and service and privacy
         policy.
       </div>

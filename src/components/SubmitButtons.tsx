@@ -12,7 +12,7 @@ export function GeneralSubmitButton({ text, icon }: GeneralSubmitButtonProps) {
   const { pending } = useFormStatus();
   return (
     <button
-      className="bg-black hover:bg-[#252525] transition-all duration-200 border-[#333333] border text-white rounded-md py-2 w-full flex items-center justify-center gap-3"
+      className="bg-[#23A6F0] hover:bg-[#0e8bd2] text-white transition-all duration-200 rounded-md py-3 w-full flex items-center justify-center gap-3 font-semibold"
       disabled={pending}
     >
       {pending ? (

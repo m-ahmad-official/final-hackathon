@@ -13,6 +13,40 @@ const CartPage = () => {
     const qty = Number(arr.qty) || 1;
     return subTotal + (price - (price * discount) / 100) * qty;
   }, 0);
+
+  const [isLoading, setIsLoading] = React.useState(false);
+
+  interface CartItem {
+    _id: string;
+    title: string;
+    price: number;
+    imageUrl: string;
+    dicountPercentage: number;
+    qty: number;
+    uuid: number | string | undefined;
+  }
+
+  async function handleCheckOut(products: CartItem[]) {
+    setIsLoading(true);
+    try {
+      const response = await fetch("/api/checkout", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ products }),
+      });
+
+      const data = await response.json();
+      window.location.href = data.url;
+      console.log(data);
+    } catch (error) {
+      console.error("Checkout failed:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  }
+
   return (
     <>
       <h1 className="text-[#252B42] text-3xl font-bold text-center my-14">
@@ -48,9 +82,13 @@ const CartPage = () => {
                   <h2>${subTotal.toFixed(2)}</h2>
                 </div>
                 <div className="divider my-3"></div>
-                <div className="bg-[#23A6F0] rounded-lg hover:bg-[#fff] text-white hover:text-[#23A6F0] transition-all duration-200 flex justify-center">
-                  <button className="uppercase font-bold py-3 px-6">
-                    proceed to checkout
+                <div className="bg-[#23A6F0] rounded-lg hover:bg-[#0e8bd2] text-white transition-all duration-200 flex justify-center">
+                  <button
+                    onClick={() => handleCheckOut(cartArray as CartItem[])}
+                    disabled={isLoading}
+                    className={`uppercase font-bold py-3 px-6 ${isLoading ? "cursor-not-allowed" : ""}`}
+                  >
+                    {isLoading ? "Processing..." : "Proceed to Checkout"}
                   </button>
                 </div>
                 <div className="divider my-3"></div>

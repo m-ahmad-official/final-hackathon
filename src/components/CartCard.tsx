@@ -2,10 +2,26 @@ import { delItem } from "@/app/store/features/cart";
 import { useAppDispatch, useAppSelector } from "@/app/store/hooks";
 import Image from "next/image";
 import React from "react";
+import { toast, Bounce } from "react-toastify";
 
 const CartCard = () => {
   const cartArray = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
+
+  const notify = (uuid: string) => {
+    dispatch(delItem(uuid));
+    toast.success("Product Removed from Cart!", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    });
+  };
 
   const handleIncrement = (uuid: string) => {
     const itemExists = cartArray.find((item) => item.uuid === uuid);
@@ -58,7 +74,7 @@ const CartCard = () => {
                 </p>
 
                 <button
-                  onClick={() => dispatch(delItem(item.uuid as string))}
+                  onClick={() => notify(item.uuid as string)}
                   className="text-sm font-medium bg-red-500 sm:hover:bg-white text-white sm:hover:text-red-600 rounded my-1 p-1 w-fit h-fit transition-all duration-300"
                 >
                   Remove
